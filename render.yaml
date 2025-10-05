@@ -1,0 +1,19 @@
+# render.yaml (Place this in the 'react-app' directory)
+services:
+  - type: web
+    name: crackgpt-api
+    # 🚨 Crucial: Tells Render to look inside the 'backend' folder
+    rootDir: backend
+    env: python
+    region: oregon # Set to a region near your users
+    plan: free
+    # Runs pip install inside the 'backend' folder
+    buildCommand: "pip install -r requirements.txt"
+    # Starts Gunicorn, looking for the 'app' variable in 'app.py'
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PORT
+        value: "10000"
+      # 🚨 Set your actual Gemini API key here
+      - key: API_KEY
+        value: "AIzaSyBwPKqnbTuxyC2UPquA81dOz20OWg7Hdvw"

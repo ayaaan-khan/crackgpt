@@ -1,4 +1,3 @@
-API_KEY = "AIzaSyBwPKqnbTuxyC2UPquA81dOz20OWg7Hdvw" 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import speech_recognition as sr
@@ -10,7 +9,9 @@ import time
 from pydub import AudioSegment
 import io
 import base64 # Needed to handle Base64 file data from the frontend
-
+import os # Make sure this is imported at the top
+# Renders 'API_KEY' environment variable will be read here
+API_KEY = os.environ.get("API_KEY", "") 
 app = Flask(__name__)
 CORS(app)
 
